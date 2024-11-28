@@ -1,1 +1,23 @@
+html
+  head
+    title Co-Operative's Union
+    // This block allows you to inject additional content (like CSS) into the <head> section if needed later.
+  body
+    header
+      h1(style="font-size: 45px; font-weight: bold; color: blue; margin-top: 10px; margin-bottom: 2px; text-align: center;") Co-Operative's Union
+    main
+      .main-content(style="display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 40px; background-image: url('C:\\Users\\DHVANISH\\Downloads\\milk-flow.jpg'); background-size: cover; background-position: center; min-height: 100vh; text-align: center;")
+        h1.welcome-title(style="font-size: 25px; font-weight: bold; color: black; margin-bottom: 10px; text-align: center;") Welcome to Co-Operative's Union!
+        p.welcome-message(style="font-size: 18px; color: black; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; text-align: center;") Explore our exclusive range of products.
+
+        .cta-section(style="margin-bottom: 50px;")
+          a.cta-button(href="#shop-now", style="padding: 15px 30px; font-size: 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 30px; box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3); transition: background-color 0.3s ease, transform 0.3s ease;") Shop Now
+
+        .products-grid(style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; padding: 20px; width: 100%;")
+          each item in data
+            .product-card(style="border: 1px solid #ddd; padding: 15px; text-align: center; border-radius: 12px; background: rgba(255, 255, 255, 0.8); transition: transform 0.3s ease, box-shadow 0.3s ease;")
+              img(src=item.image, alt=item.name, style="max-width: 150px; max-height: 150px; border-radius: 8px;")
+              h3(style="font-size: 20px; margin: 10px 0; text-align: center;")= item.name
+              p(style="font-size: 16px; color: #555; text-align: center;") Produced by: #{item.producer}
+              a(href='/product-single/' + item.id, style="display: inline-block; margin-top: 15px; padding: 10px 20px; background-color: #28a745; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;") View Details
 
