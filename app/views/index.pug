@@ -1,23 +1,230 @@
+doctype html
 html
   head
     title Co-Operative's Union
-    // This block allows you to inject additional content (like CSS) into the <head> section if needed later.
+    style.
+      body {
+        font-family: 'Times New Roman', sans-serif;
+        margin: 0;
+        background-color: #f4f7fc;
+      }
+
+      .main-content h2 {
+        font-size: 50px;
+        color: white;
+        padding: 5px 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        font-weight: bold;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .main-content {
+        padding: 40px;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                    url('images/background.jpg');
+        background-size: 100% auto ;
+        background-position: center;
+        background-attachment: fixed;
+        width: 95%;
+        border-radius: 12px;
+        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .welcome-title {
+        font-size: 30px;
+        font-weight: bold;
+        color: blue  ;
+        margin-bottom: 15px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .welcome-message {
+        font-size: 18px;
+        color: white;
+        margin: 0 auto 30px;
+        max-width: 600px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      }
+
+      .cta-section {
+        margin-bottom: 50px;
+      }
+
+      .cta-button {
+        padding: 15px 40px;
+        font-size: 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 30px;
+        box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+
+      .cta-button:hover {
+        background-color: #0056b3;
+        transform: translateY(-3px);
+      }
+
+      .modal-content {
+        background-color: white;
+        padding: 40px;
+        border-radius: 8px;
+        width: 400px;
+        text-align: center;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 30px;
+        padding: 30px;
+        width: 100%;
+        margin-top: 30px;
+      }
+
+      .product-card {
+        border: 1px solid #ddd;
+        padding: 20px;
+        text-align: center;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.8);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .product-card img {
+        max-width: 200px;
+        max-height: 200px;
+        border-radius: 8px;
+      }
+
+      .product-card h3 {
+        font-size: 22px;
+        margin: 15px 0;
+        color: #333;
+      }
+
+      .product-card p {
+        font-size: 16px;
+        color: #555;
+      }
+
+      .product-card a {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 30px;
+        background-color: #28a745;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+      }
+
+      .product-card a:hover {
+        background-color: #218838;
+      }
+
+      /* Modal & Form Styles */
+      .form-group label {
+        font-size: 16px;
+        font-weight: 500;
+        color: #555;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 12px;
+        margin-top: 8px;
+        font-size: 16px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+
+      button[type="submit"],
+      button[type="button"] {
+        padding: 12px 25px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+      }
+
+      button[type="submit"]:hover,
+      button[type="button"]:hover {
+        background-color: #0056b3;
+      }
+      
   body
     header
-      h1(style="font-size: 45px; font-weight: bold; color: blue; margin-top: 10px; margin-bottom: 2px; text-align: center;") Co-Operative's Union
+      //- h2 Co-Operative's Union
     main
-      .main-content(style="display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 40px; background-image: url('C:\\Users\\DHVANISH\\Downloads\\milk-flow.jpg'); background-size: cover; background-position: center; min-height: 100vh; text-align: center;")
-        h1.welcome-title(style="font-size: 25px; font-weight: bold; color: black; margin-bottom: 10px; text-align: center;") Welcome to Co-Operative's Union!
-        p.welcome-message(style="font-size: 18px; color: black; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; text-align: center;") Explore our exclusive range of products.
+      .main-content
+        h2 Co-Operative's Union
+        h1.welcome-title Welcome!
+        p.welcome-message Explore our exclusive range of products.
+        .cta-section
+          a.cta-button(href="javascript:void(0);", id="loginButton") Log in As Producer
 
-        .cta-section(style="margin-bottom: 50px;")
-          a.cta-button(href="#shop-now", style="padding: 15px 30px; font-size: 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 30px; box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3); transition: background-color 0.3s ease, transform 0.3s ease;") Shop Now
+          // Popup Modal for Login
+          div#loginModal(onclick="closeLoginModalOutside(event)", style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000;")
+            div.modal-content(onclick="event.stopPropagation()", style="background-color: white; padding: 30px; border-radius: 8px; width: 400px; text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);")
+              h2(style="font-size: 22px; font-weight: 600; margin-bottom: 20px; color: #333;") Login as Producer
+              form(action="/login", method="post")
+                div.form-group(style="margin-bottom: 15px;")
+                  label(for="producerId", style="font-size: 16px; font-weight: 500; color: #555;") Producer ID:
+                  input(type="text", id="producerId", name="producerId", class="form-control", placeholder="Enter your Producer ID", required=true, style="width: 100%; padding: 12px; margin-top: 8px; font-size: 16px; border-radius: 6px; border: 1px solid #ccc;")
+                div.form-group(style="margin-bottom: 25px;")
+                  label(for="password", style="font-size: 16px; font-weight: 500; color: #555;") Password:
+                  input(type="password", id="password", name="password", class="form-control", placeholder="Enter your Password", required=true, style="width: 100%; padding: 12px; margin-top: 8px; font-size: 16px; border-radius: 6px; border: 1px solid #ccc;")
+                button(type="submit", style="padding: 12px 25px; font-size: 16px; background-color: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer; width: 100%; transition: background-color 0.3s ease;") Login
+              button(type="button", id="closeLoginModal", style="padding: 12px 25px; font-size: 16px; background-color:rgb(177, 171, 171); color: white; border: none; border-radius: 6px; cursor: pointer; margin-top: 20px; width: 100%;") Close
 
-        .products-grid(style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; padding: 20px; width: 100%;")
+        .products-grid
           each item in data
-            .product-card(style="border: 1px solid #ddd; padding: 15px; text-align: center; border-radius: 12px; background: rgba(255, 255, 255, 0.8); transition: transform 0.3s ease, box-shadow 0.3s ease;")
-              img(src=item.image, alt=item.name, style="max-width: 150px; max-height: 150px; border-radius: 8px;")
-              h3(style="font-size: 20px; margin: 10px 0; text-align: center;")= item.name
-              p(style="font-size: 16px; color: #555; text-align: center;") Produced by: #{item.producer}
-              a(href='/product-single/' + item.id, style="display: inline-block; margin-top: 15px; padding: 10px 20px; background-color: #28a745; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;") View Details
+            .product-card
+              img(src=item.image, alt=item.name)
+              h3= item.name
+              p Produced by: #{item.producer}
+              a(href='/product-single/' + item.id) View Details
+    
+    script.
+      if (performance.navigation.type === 2) {
+        location.reload(true); // Force reload if coming back to the page
+      }
+      
+      document.getElementById('loginButton').onclick = function () {
+        document.getElementById('loginModal').style.display = 'flex';
+      };
 
+      document.getElementById('closeLoginModal').onclick = function () {
+        document.getElementById('loginModal').style.display = 'none';
+      };
+
+      function closeLoginModalOutside(event) {
+        if (event.target.id === 'loginModal') {
+          document.getElementById('loginModal').style.display = 'none';
+        }
+      }
