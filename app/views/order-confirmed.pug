@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    title Order Confirmed
+    style.
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url('/images/shop.jpg');
+        background-size: 100% auto ;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        color: #333;
+      }
+      h1 {
+        margin-top: 50px;
+        color:rgb(252, 253, 253);
+      }
+  body  
+    h1 Thank You for Your Order!
+    p Your order has been successfully placed.
+
+    a(href="/") Back to Home
+
+    p Redirecting to the home page in <span id="countdown">10</span> seconds...
+
+    script.
+      let countdown = 10;
+      const countdownDisplay = document.getElementById('countdown');
+
+      const countdownInterval = setInterval(() => {
+        countdown--;
+        countdownDisplay.textContent = countdown;
+
+        if (countdown <= 0) {
+          clearInterval(countdownInterval); // Stop the countdown
+          window.location.href = '/'; // Redirect to the home page
+        }
+      }, 1000); // Update every 1000 milliseconds (1 second)
