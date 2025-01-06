@@ -1,0 +1,283 @@
+doctype html
+html
+  head
+    title Order Form
+    style.
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url('/images/shop.jpg');
+        background-attachment: fixed;
+        background-size: 100% auto ;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 900px;
+        width: 800px;
+        margin: 50px 0 50px auto; /* Automatically push to the right */
+        margin-right : 10px;
+        background: white;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+      h1 {
+        font-size: 28px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 8px;
+        color: #555;
+      }
+      input, textarea {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+      }
+      textarea {
+        resize: vertical;
+      }
+      button {
+        padding: 12px 25px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        color: #007bff;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      .back-link:hover {
+        text-decoration: underline;
+      }
+      .product-info-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+      }
+      .product-image-wrapper {
+        flex: 1;
+        max-width: 250px;
+        margin-right: 20px;
+      }
+      img.product-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+      }
+      .product-details {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .product-details input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        background: #f1f1f1;
+        border-radius: 6px;
+      }
+      .product-details input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
+      .product-details .quantity-wrapper,
+      .product-details .price-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .product-details .quantity-wrapper input,
+      .product-details .price-wrapper input {
+        width: 70%;
+      }
+      .product-details .quantity-wrapper label,
+      .product-details .price-wrapper label {
+        width: 25%;
+        font-size: 16px;
+        margin-right: 10px;
+        color: #555;
+      }
+      .total-price-wrapper {
+        font-size: 18px;
+        margin-top: 20px;
+        font-weight: bold;
+        color: #007bff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+  body
+    .container
+      h1 Order Form
+      form(action="/confirm-order", method="post", id="orderForm")
+        .product-info-wrapper
+          .product-image-wrapper
+            img.product-image(src=`/${product.image}`, alt=product.name)
+          .product-details
+            .form-group
+              label(for="productId") Product ID
+              input(type="text", id="productId", name="product_id", readonly=true, value=`${product.id}`)
+            .form-group
+              label(for="productName") Product Name
+              input(type="text", id="productName", name="product_name", readonly=true, value=`${product.name}`)
+            .form-group.quantity-wrapper
+              label(for="quantity") Quantity
+              input(type="number", id="quantity", name="quantity_visible", min="1", value="1", oninput="updateOrderDetails()")
+            .form-group.price-wrapper
+              label(for="totalPrice") Total Price
+              input(type="text", id="totalPrice", name="totalPrice_visible", readonly=true, value=`£ ${product.price}`)
+
+        // Buyer Information Form
+        .form-group
+          label(for="firstName") First Name
+          input(type="text", id="firstName", name="buyer_first_name", required=true, placeholder="Enter your first name", oninput="validateFirstName()")
+        .form-group
+          label(for="lastName") Last Name
+          input(type="text", id="lastName", name="buyer_last_name", required=true, placeholder="Enter your last name", oninput="validateLastName()")
+        .form-group
+          label(for="contact") Contact Number
+          input(type="tel", id="contact", name="contact", required=true, placeholder="Enter your contact number", value="+44 ", maxlength="14", oninput="validateContactNumber()")
+        .form-group
+          label(for="address") Address
+          textarea(id="address", name="location", rows="3", required=true, placeholder="Enter your address")
+
+        button(type="submit") Confirm Order
+
+    script.
+      const form = document.getElementById('orderForm');
+      const quantityInput = document.getElementById('quantity');
+      const totalPriceElement = document.getElementById('totalPrice');
+      const pricePerUnit = #{product.price};
+
+      quantityInput.addEventListener('input', function () {
+          const quantity = Number(this.value);
+          const totalPrice = quantity * pricePerUnit;
+          totalPriceElement.value = `£ ${totalPrice.toFixed(2)}`;
+      });
+
+      function validateFirstName() {
+          const firstName = document.getElementById('firstName');
+          firstName.value = firstName.value.replace(/[^A-Za-z]/g, ''); // Only alphabetic letters
+      }
+
+      function validateLastName() {
+          const lastName = document.getElementById('lastName');
+          lastName.value = lastName.value.replace(/[^A-Za-z]/g, ''); // Only alphabetic letters, no spaces
+      }
+
+      function validateContactNumber() {
+          const contactNumber = document.getElementById('contact');
+          let value = contactNumber.value.trim();
+
+          if (value === '') {
+              contactNumber.value = ''; // Ensures the field is actually empty
+              return;
+          }
+
+          value = value.replace(/[^0-9]/g, '');
+
+          if (value.startsWith('44')) {
+              value = '+44 ' + value.substring(2);
+          } else if (!value.startsWith('+44')) {
+              value = '+44 ' + value;
+          }
+
+          if (value.length > 14) {
+              value = value.substring(0, 14);
+          }
+
+          contactNumber.value = value;
+      }
+
+
+      document.getElementById('contact').addEventListener('input', validateContactNumber);
+
+      function validateContactNumber() {
+          const contactNumber = document.getElementById('contact');
+          let value = contactNumber.value.trim();
+
+          if (value === '') {
+              contactNumber.value = ''; // Ensures the field is actually empty
+              return;
+          }
+
+          value = value.replace(/[^0-9]/g, ''); // Keep only numeric characters
+
+          if (value.startsWith('44')) {
+              value = '+44 ' + value.substring(2);
+          } else if (!value.startsWith('+44')) {
+              value = '+44 ' + value;
+          }
+
+          if (value.length > 14) {
+              value = value.substring(0, 14);
+          }
+
+          contactNumber.value = value;
+      }
+
+      form.addEventListener('submit', (event) => {
+          const contactNumber = document.getElementById('contact').value.trim();
+
+          // Check if the contact number is only "+44"
+          if (contactNumber === '+44' || contactNumber === '+44 ') {
+              event.preventDefault(); // Prevent form submission
+              alert('Please enter a valid contact number.');
+              return false;
+          }
+      });
+
+      // Add hidden inputs to the form dynamically
+      const hiddenQuantityInput = document.createElement('input');
+      hiddenQuantityInput.type = 'hidden';
+      hiddenQuantityInput.name = 'quantity';
+      form.appendChild(hiddenQuantityInput);
+
+      const hiddenTotalPriceInput = document.createElement('input');
+      hiddenTotalPriceInput.type = 'hidden';
+      hiddenTotalPriceInput.name = 'totalPrice';
+      form.appendChild(hiddenTotalPriceInput);
+
+      // Function to update hidden fields with the latest values
+      function updateHiddenFields() {
+          const quantity = Number(quantityInput.value);
+          const totalPrice = quantity * pricePerUnit;
+
+          hiddenQuantityInput.value = quantity || 0; // Default to 0 if empty
+          hiddenTotalPriceInput.value = totalPrice.toFixed(2); // Format total price
+      }
+
+      // Update hidden fields right before form submission
+      form.addEventListener('submit', () => {
+          updateHiddenFields();
+      });
+
